@@ -28,7 +28,21 @@
   transform: scale(1.1);
   cursor: pointer;
 }
-
+.tekstbovenreactie{
+background-color:#e7e7e7;
+min-width: 85%;
+min-height:3vw;
+max-height:7vw;
+color:white;
+margin-left: auto;
+margin-right: 2vw;
+overflow: auto;
+border-radius:10px;
+padding: 5px;
+margin-bottom: 5px;
+display:flex;
+align-items:center;
+}
 #stuurknop:active {
   transform: scale(0.95);
 }
@@ -50,7 +64,9 @@
         //justify-content: center;
         //text-align:left;
         padding-left:10px;
-        display:flex; /* Zorgt dat de tekst naar rechts uitgelijnd blijft */
+    display: flex;
+  flex-direction: column; 
+  overflow-x:hidden;/* Zorgt dat de tekst naar rechts uitgelijnd blijft */
 }
         }
         body, button, input, .jouwbericht, .anderbericht {
@@ -76,6 +92,22 @@
         //text-align:left;
         padding-left:10px;
         display:flex;
+        flex-direction: column; 
+  overflow-x:hidden;
+        }
+        svg{
+        margin-left:19vw;
+        width:2.5vw;
+        height:2.5vw;
+        fill:white;
+        transition:0.5s;
+        }
+        svg:hover{
+        margin-left:19vw;
+        width:2.6vw;
+        height:2.6vw;
+        fill:#cfcfcf;
+        transition:0.5s;
         }
         #typveld{
         width:98vw;
@@ -368,7 +400,7 @@
     <!--<p class="jouwbericht" id="jouwbericht"></p>-->
     </div>
     <input id="typveld" type="text"></input>
-    <button id="stuurknop" onclick="post()">+</button>
+    <button id="stuurknop" onclick="vpost()">+</button>
     <dialog id="username">
     <div id="connectdiv">
         <h1>username</h1>
@@ -380,6 +412,15 @@
     </dialog>
     <script>
       var usernam;
+      var responderen = 0;
+      function vpost(){
+      if(responderen === 1){
+      stuureactie();
+      responderen = 0;
+      } else {
+      post();
+      }
+      }
       function userna(){
       usernam = document.getElementById("anderecode").value;
       username.close();
@@ -404,7 +445,9 @@
 
         const raw = JSON.stringify({
           tekst: `${stuurtekst}`,
-          username: `${usernam}`
+          username: `${usernam}`,
+          reageren: `0`,
+          welkreageernr: `0`
         });
 
         const requestOptions = {
@@ -428,6 +471,10 @@
       }
 
 var numr = nummer + 1;
+var nummercheck;
+var reactieusername;
+var tekstalsreactie;
+var hetgewoonnummer;
 function check() {
         // Gebruik een aparte variabele om inkomende berichten te tracken
         var numr = nummer + 1;
@@ -445,15 +492,24 @@ function check() {
           })
           .then((result) => {
             if (result) {
+             if (result.reageren === '1'){
+            tekstalsreactie = result.tekst;
+            reactieusername = result.username;
+            hetgewoonnummer = numr;
+            nummercheck = result.welkreageernr;
+             reactiegevonden();
+             nummer = numr;
+             } else {
               var newDiv = document.createElement("p");
               newDiv.classList.add("anderbericht");
               newDiv.id = "atekst" + numr;
               var h = document.getElementById("cont");
               h.appendChild(newDiv);
-              document.getElementById("atekst" + numr).innerHTML = `${result.username}: ${result.tekst}`;
+              document.getElementById("atekst" + numr).innerHTML = `${result.username}: ${result.tekst}    <button onclick="responding(${numr})">j</button>`;
               var h = document.getElementById("cont");
   h.scrollTop = h.scrollHeight;
-              nummer = numr; // Update nummer voor volgende check
+              nummer = numr;
+              } // Update nummer voor volgende check
             }
           })
           .catch((error) => console.error(error));
@@ -476,6 +532,119 @@ function clearMessages() {
       nummer = 0;  // Reset het nummer naar 0
     })
     .catch(error => console.error('Error:', error));
+}
+var responderen = 0;
+var respnmr;
+var resptekst = "";
+function responding(welk){
+respnmr = welk;
+console.log(respnmr);
+responderen = 1;
+stuurreactie();
+}
+function stuurreactie(){
+console.log('start stuurreactie');
+var resspnmr = respnmr;
+console.log(resspnmr);
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${resspnmr}`, requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              return;
+            }
+            return response.json();
+          })
+          .then((result) => {
+            if (result) {
+              resptekst = `${result.tekst}`;
+              console.log(resptekst);
+            }
+          })
+          //responderen = 0;
+          //.catch((error) => console.error(error));
+//stuureactie();
+}
+function stuureactie(){
+console.log('start stuureactie');
+responderen = 0;
+console.log(respnmr);
+console.log(resptekst);
+// Haal de waarde van het input veld direct op na het klikken
+        var stuurtekst = document.getElementById("typveld").value;
+        if (stuurtekst.trim() === "") return; // Zorg dat lege berichten niet worden verstuurd
+        
+        nummer++;
+        var newDiv = document.createElement("p");
+        newDiv.classList.add("jouwbericht");
+        newDiv.id = "jouwtekst" + nummer;
+        var h = document.getElementById("cont");
+        h.appendChild(newDiv);
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+          tekst: `${stuurtekst}`,
+          username: `${usernam}`,
+          reageren: `1`,
+          welkreageernr: `${respnmr}`
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${nummer}`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            document.getElementById("jouwtekst" + nummer).innerHTML = `<p class="tekstbovenreactie">${resptekst}</p> ${result.tekst}`;
+          })
+          .catch((error) => console.error(error));
+
+        // Leeg het tekstveld na versturen
+        document.getElementById("typveld").value = "";
+        var h = document.getElementById("cont");
+  h.scrollTop = h.scrollHeight;
+  responderen = 0;
+}
+function reactiegevonden(){
+console.log("reactiegevonden is gestart");
+var resspnmr = nummercheck;
+console.log(resspnmr);
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${resspnmr}`, requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              return;
+            }
+            return response.json();
+          })
+          .then((result) => {
+            if (result) {
+              resptekst = `${result.tekst}`;
+              console.log(resptekst);
+            }
+          })
+         var newDiv = document.createElement("p");
+        newDiv.classList.add("anderbericht");
+        newDiv.id = "atekst" + hetgewoonnummer;
+        var h = document.getElementById("cont");
+        h.appendChild(newDiv);
+        document.getElementById("atekst" + hetgewoonnummer).innerHTML = `<p class="tekstbovenreactie">${resptekst}</p> ${reactieusername}: ${tekstalsreactie}`;
+             var h = document.getElementById("cont");
+  h.scrollTop = h.scrollHeight;
+  nummer = numr;
 }
     </script>
 </body>
