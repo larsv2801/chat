@@ -1,0 +1,481 @@
+ <!DOCTYPE html>
+ <html style="scroll-behavior: smooth">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      ::-webkit-scrollbar {width: 1vw; height: 8px}
+            ::-webkit-scrollbar-thumb {
+            //background-color: black;
+            background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+        backdrop-filter:blur(90px);
+        border-radius:25px;
+            }
+            ::-webkit-scrollbar-track {
+            background:linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
+        backdrop-filter:blur(90px);
+        border-radius:25px;
+            }
+      body{
+      background:linear-gradient(135deg,#d5dfff,#e7dcff);
+      background-size: cover;
+      transition:0.52s;
+      overflow-y:auto;
+      overflow-x:hidden;
+      }
+      #clearBtn:hover {
+  background-color: red;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#stuurknop:active {
+  transform: scale(0.95);
+}
+#clearBtn:active {
+  transform: scale(0.95);
+}
+        .jouwbericht{
+        background-color: #1E88E5;
+  border-radius: 5px;
+  max-width: 25vw;
+  min-height: 3.5vw;
+  max-height: 10vw;
+  color: white;
+  margin-left: auto;
+  margin-right: 2vw; /* Zorgt voor wat ruimte tussen het bericht en de rechterkant */
+  overflow: auto;
+  transition: 0.52s;
+  align-items:center;
+        //justify-content: center;
+        //text-align:left;
+        padding-left:10px;
+        display:flex; /* Zorgt dat de tekst naar rechts uitgelijnd blijft */
+}
+        }
+        body, button, input, .jouwbericht, .anderbericht {
+  font-family: 'Poppins', sans-serif;
+}
+#typveld:focus {
+  box-shadow: 0 0 8px rgba(33, 150, 243, 0.5);
+  outline: none;
+}
+        .anderbericht{
+        background-color: #43A047;
+        border-radius:5px;
+        max-width:25vw;
+        min-height:3.5vw;
+        max-height:10vw;
+        color:white;
+        margin-right:auto;
+        margin-left:2vw;
+        overflow:auto;
+        transition:0.52s;
+        align-items:center;
+        //justify-content: center;
+        //text-align:left;
+        padding-left:10px;
+        display:flex;
+        }
+        #typveld{
+        width:98vw;
+        border:none;
+        height:3.8vw;
+        background-color:#e7e7e7;
+        border-radius:50vw;
+        position:absolute;
+        bottom: 1.5vh;
+        top:91vh;
+        transition:0.52s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #stuurknop{
+        position:absolute;
+        top:91.35vh;
+        left:95.15vw;
+        width:3.5vw;
+        height:3.5vw;
+        border-radius:50%;
+        border:none;
+        color:white;
+        transition:0.52s;
+        }
+        #stuurknop {
+  width: 3.5vw;
+  height: 3.5vw;
+  border-radius: 50%;
+  background-color: #ff5722;
+  //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+#stuurknop:hover {
+  background-color: #e64a19;
+}
+        #cont{
+        overflow:auto;
+        width:90vw;
+        margin-left:5vw;
+        margin-right:5vw;
+        height: calc(85vh - 3.8vw);
+        margin-top:0;
+        transition:0.52s;
+        scroll-behavior: smooth;
+        padding-bottom: 4.5vw;
+        }
+      
+      @media (max-width: 990px) {
+      .jouwbericht{
+        background-color:blue;
+        border-radius:5px;
+        max-width:35vw;
+        min-height:5.5vw;
+        max-height:17vw;
+        color:white;
+        margin-left:auto;
+        margin-right:2vw;
+        overflow:auto;
+        font-size:3.5vw;
+        transition:0.52s;
+        }
+        #typveld{
+        width:95vw;
+        border:none;
+        height:7.8vw;
+        background-color:#e7e7e7;
+        border-radius:55px;
+        position:absolute;
+        top:87vh;
+        transition:0.52s;
+        }
+        #stuurknop{
+        position:absolute;
+        top:87.1vh;
+        left:89.9vw;
+        width:8.5vw;
+        height:7.6vw;
+        border-radius:50px;
+        border:none;
+        background-color:#0088ff;
+        color:white;
+        transition:0.52s;
+        bottom: 1.8vh;
+        }
+        .jouwbericht{
+        background-color:blue;
+        border-radius:5px;
+        max-width:35vw;
+        min-height:5.5vw;
+        max-height:17vw;
+        color:white;
+        margin-left:auto;
+        margin-right:2vw;
+        overflow:auto;
+        font-size:3.5vw;
+        transition:0.52s;
+        }
+        .anderbericht{
+        background-color:green;
+        border-radius:5px;
+        max-width:35vw;
+        min-height:5.5vw;
+        max-height:17vw;
+        color:white;
+        margin-right:auto;
+        margin-left:2vw;
+        overflow:auto;
+        font-size:3.5vw;
+        transition:0.52s;
+        }
+        #username{
+        border:none;
+        display:flex;
+        outline:none;
+        border-radius:15px;
+        background:linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
+        backdrop-filter:blur(10px);
+        transition:0.52s;
+        color:white;
+        font-family:arial;
+        align-items:center;
+        text-align:center;
+        justify-content: center;
+        width:40vw;
+        height:40vw;
+        }
+        #username button{
+        border:none;
+        outline:none;
+        border-radius:10px;
+        background-color:white;
+        backdrop-filter:blur(1px);
+        transition:0.52s;
+        color:black;
+        height:6vw;
+        width:17vw;
+        //font-family:arial;
+        margin-top:1vw;
+        }
+        #username input{
+        border:none;
+        outline:none;
+        border-radius:18px;
+        background-color:white;
+        backdrop-filter:blur(1px);
+        transition:0.52s;
+        color:black;
+        height:5.5vw;
+        width:35vw;
+        //font-family:arial;
+        margin-top:1vw;
+        }
+      }
+      @media (max-width: 990px) {
+      #username button{
+        border:none;
+        outline:none;
+        border-radius:10px;
+        background-color:white;
+        backdrop-filter:blur(1px);
+        transition:0.52s;
+        color:black;
+        height:6vw;
+        width:17vw;
+        //font-family:arial;
+        margin-top:1vw;
+        }
+  input[type="text"] {
+    font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  }
+}
+      #username button{
+        border:none;
+        outline:none;
+        border-radius:10px;
+        background-color:white;
+        backdrop-filter:blur(1px);
+        transition:0.52s;
+        color:black;
+        height:4vw;
+        width:10vw;
+        //font-family:arial;
+        margin-top:1vw;
+        }
+        #clearBtn{
+        width:9vw;
+        min-width:100px;
+        max-height:20px;
+        min-height:15px;
+        height:4vw;
+        background-color:red;
+        /*border-color:#f4b4a4;
+        outline-color:#f4b4a4;*/
+        border-radius:5px;
+        border:1px;
+        outline:none;
+        position:absolute;
+        top:0.5vw;
+        left:1vw;
+        color:white;
+        transition:0.52s;
+        }
+        #username{
+        border:none;
+        outline:none;
+        border-radius:15px;
+        background:linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
+        backdrop-filter:blur(10px);
+        transition:0.52s;
+        color:white;
+        font-family:arial;
+        align-items:center;
+        text-align:center;
+        justify-content: center;
+        }
+        #username input{
+        border-radius:25px;
+        }
+        #username button{
+        border:none;
+        outline:none;
+        border-radius:15px;
+        background-color:white;
+        backdrop-filter:blur(1px);
+        transition:0.52s;
+        color:black;
+        //font-family:arial;
+        margin-top:1vw;
+        }
+        input[type="text"]:focus{
+        outline:0.1px;
+        border:0.1px;
+        }
+        input[type="text"]{
+        padding-left:10px;
+        outline:0.1px;
+        border:0.1px;
+        }
+        @media (max-width: 530px) {
+      .jouwbericht{
+        background-color:blue;
+        border-radius:5px;
+        max-width:35vw;
+        min-height:5.5vw;
+        max-height:17vw;
+        color:white;
+        margin-left:auto;
+        margin-right:2vw;
+        overflow:auto;
+        font-size:3.5vw;
+        transition:0.52s;
+        }
+      #stuurknop{
+        position:absolute;
+        top:87.1vh;
+        left:90.5vw;
+        width:8.5vw;
+        height:6.1vw;
+        border-radius:50px;
+        border:none;
+        background-color:#0088ff;
+        color:white;
+        transition:0.52s;
+      }
+      #username button{
+        border:none;
+        outline:none;
+        border-radius:10px;
+        background-color:white;
+        backdrop-filter:blur(1px);
+        transition:0.52s;
+        color:black;
+        height:5vw;
+        width:15vw;
+        //font-family:arial;
+        margin-top:1vw;
+        }
+        #cont{
+        padding-bottom: 4.5vw;
+        }
+      }
+    </style>
+</head>
+<body onload="username.showModal();">
+  <button id="clearBtn" onclick="clearMessages()">Verwijder</button>
+    <div id="cont">
+    <!--<p class="jouwbericht" id="jouwbericht"></p>-->
+    </div>
+    <input id="typveld" type="text"></input>
+    <button id="stuurknop" onclick="post()">+</button>
+    <dialog id="username">
+    <div id="connectdiv">
+        <h1>username</h1>
+        <input id="anderecode"type="text"></input>
+        <br>
+        <button class="cofs" onclick="userna()">submit</button>
+        <button class="cofs" onclick="username.close()">close</button>
+    </div>
+    </dialog>
+    <script>
+      var usernam;
+      function userna(){
+      usernam = document.getElementById("anderecode").value;
+      username.close();
+      document.getElementById('username').style.display = "none";
+      }
+        var nummer = 0;
+        var stuurtekst= document.getElementById("typveld").value;
+        function post() {
+        // Haal de waarde van het input veld direct op na het klikken
+        var stuurtekst = document.getElementById("typveld").value;
+        if (stuurtekst.trim() === "") return; // Zorg dat lege berichten niet worden verstuurd
+        
+        nummer++;
+        var newDiv = document.createElement("p");
+        newDiv.classList.add("jouwbericht");
+        newDiv.id = "jouwtekst" + nummer;
+        var h = document.getElementById("cont");
+        h.appendChild(newDiv);
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+          tekst: `${stuurtekst}`,
+          username: `${usernam}`
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${nummer}`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            document.getElementById("jouwtekst" + nummer).innerHTML = result.tekst;
+          })
+          .catch((error) => console.error(error));
+
+        // Leeg het tekstveld na versturen
+        document.getElementById("typveld").value = "";
+        var h = document.getElementById("cont");
+  h.scrollTop = h.scrollHeight;
+      }
+
+var numr = nummer + 1;
+function check() {
+        // Gebruik een aparte variabele om inkomende berichten te tracken
+        var numr = nummer + 1;
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${numr}`, requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              return;
+            }
+            return response.json();
+          })
+          .then((result) => {
+            if (result) {
+              var newDiv = document.createElement("p");
+              newDiv.classList.add("anderbericht");
+              newDiv.id = "atekst" + numr;
+              var h = document.getElementById("cont");
+              h.appendChild(newDiv);
+              document.getElementById("atekst" + numr).innerHTML = `${result.username}: ${result.tekst}`;
+              var h = document.getElementById("cont");
+  h.scrollTop = h.scrollHeight;
+              nummer = numr; // Update nummer voor volgende check
+            }
+          })
+          .catch((error) => console.error(error));
+      }
+
+setInterval(check, 1000);
+
+function clearMessages() {
+  const requestOptions = {
+    method: "DELETE",
+    redirect: "follow",
+  };
+
+  fetch("https://unruly-longing-amaranthus.glitch.me/clear", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result.message);
+      // Wis alle berichten uit de interface
+      document.getElementById("cont").innerHTML = '';
+      nummer = 0;  // Reset het nummer naar 0
+    })
+    .catch(error => console.error('Error:', error));
+}
+    </script>
+</body>
