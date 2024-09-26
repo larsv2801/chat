@@ -412,8 +412,10 @@ align-items:center;
     </div>
     </dialog>
     <script>
-     if (event.key === "Enter") {
+     document.addEventListener("keydown", function(event) {
+  if (event.key === "ArrowUp") {
     vpost();
+  }
   });
       var usernam;
       var responderen = 0;
