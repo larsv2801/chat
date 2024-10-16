@@ -1,658 +1,288 @@
- <!DOCTYPE html>
- <html style="scroll-behavior: smooth">
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-      ::-webkit-scrollbar {width: 1vw; height: 8px}
-            ::-webkit-scrollbar-thumb {
-            //background-color: black;
-            background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
-        backdrop-filter:blur(90px);
-        border-radius:25px;
-            }
-            ::-webkit-scrollbar-track {
-            background:linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
-        backdrop-filter:blur(90px);
-        border-radius:25px;
-            }
-      body{
-      background:linear-gradient(135deg,#d5dfff,#e7dcff);
-      background-size: cover;
-      transition:0.52s;
-      overflow-y:auto;
-      overflow-x:hidden;
-      }
-      #clearBtn:hover {
-  background-color: red;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-.tekstbovenreactie{
-background-color:#e7e7e7;
-min-width: 85%;
-min-height:3vw;
-max-height:7vw;
-color:white;
-margin-left: auto;
-margin-right: 2vw;
-overflow: auto;
-border-radius:10px;
-padding: 5px;
-margin-bottom: 5px;
-display:flex;
-align-items:center;
-}
-#stuurknop:active {
-  transform: scale(0.95);
-}
-#clearBtn:active {
-  transform: scale(0.95);
-}
-        .jouwbericht{
-        background-color: #1E88E5;
-  border-radius: 5px;
-  max-width: 25vw;
-  min-height: 3.5vw;
-  max-height: 10vw;
-  color: white;
-  margin-left: auto;
-  margin-right: 2vw; /* Zorgt voor wat ruimte tussen het bericht en de rechterkant */
-  overflow: auto;
-  transition: 0.52s;
-  //align-items:center;
-        justify-content: center;
-        //text-align:left;
-        padding-left:10px;
-    display: flex;
-  flex-direction: column; 
-  overflow-x:hidden;/* Zorgt dat de tekst naar rechts uitgelijnd blijft */
-}
-        }
-        body, button, input, .jouwbericht, .anderbericht {
-  font-family: 'Poppins', sans-serif;
-}
-#typveld:focus {
-  box-shadow: 0 0 8px rgba(33, 150, 243, 0.5);
-  outline: none;
-}
-        .anderbericht{
-        background-color: #43A047;
-        border-radius:5px;
-        max-width:25vw;
-        min-height:3.5vw;
-        max-height:10vw;
-        color:white;
-        margin-right:auto;
-        margin-left:2vw;
-        overflow:auto;
-        transition:0.52s;
-        //align-items:center;
-        justify-content: center;
-        //text-align:left;
-        padding-left:10px;
-        display:flex;
-        flex-direction: column; 
-  overflow-x:hidden;
-        }
-        svg{
-        margin-left:19vw;
-        width:2vw;
-        height:2vw;
-        fill:white;
-        transition:0.5s;
-        margin-top:-1.5vw;
-        }
-        svg:hover{
-        margin-left:19vw;
-        width:2.6vw;
-        height:2.6vw;
-        fill:#cfcfcf;
-        transition:0.5s;
-        }
-        #typveld{
-        width:98vw;
-        border:none;
-        height:3.8vw;
-        background-color:#e7e7e7;
-        border-radius:50vw;
-        position:absolute;
-        bottom: 1.5vh;
-        top:91vh;
-        transition:0.52s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        #stuurknop{
-        position:absolute;
-        top:91.35vh;
-        left:95.15vw;
-        width:3.5vw;
-        height:3.5vw;
-        border-radius:50%;
-        border:none;
-        color:white;
-        transition:0.52s;
-        }
-        #stuurknop {
-  width: 3.5vw;
-  height: 3.5vw;
-  border-radius: 50%;
-  background-color: #ff5722;
-  //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: none;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-#stuurknop:hover {
-  background-color: #e64a19;
-}
-        #cont{
-        overflow:auto;
-        width:90vw;
-        margin-left:5vw;
-        margin-right:5vw;
-        height: calc(85vh - 3.8vw);
-        margin-top:0;
-        transition:0.52s;
-        scroll-behavior: smooth;
-        padding-bottom: 4.5vw;
-        }
-      
-      @media (max-width: 990px) {
-      .jouwbericht{
-        background-color:blue;
-        border-radius:5px;
-        max-width:35vw;
-        min-height:5.5vw;
-        max-height:17vw;
-        color:white;
-        margin-left:auto;
-        margin-right:2vw;
-        overflow:auto;
-        font-size:3.5vw;
-        transition:0.52s;
-        }
-        #typveld{
-        width:95vw;
-        border:none;
-        height:7.8vw;
-        background-color:#e7e7e7;
-        border-radius:55px;
-        position:absolute;
-        top:87vh;
-        transition:0.52s;
-        }
-        #stuurknop{
-        position:absolute;
-        top:87.1vh;
-        left:89.9vw;
-        width:8.5vw;
-        height:7.6vw;
-        border-radius:50px;
-        border:none;
-        background-color:#0088ff;
-        color:white;
-        transition:0.52s;
-        bottom: 1.8vh;
-        }
-        .jouwbericht{
-        background-color:blue;
-        border-radius:5px;
-        max-width:35vw;
-        min-height:5.5vw;
-        max-height:17vw;
-        color:white;
-        margin-left:auto;
-        margin-right:2vw;
-        overflow:auto;
-        font-size:3.5vw;
-        transition:0.52s;
-        }
-        .anderbericht{
-        background-color:green;
-        border-radius:5px;
-        max-width:35vw;
-        min-height:5.5vw;
-        max-height:17vw;
-        color:white;
-        margin-right:auto;
-        margin-left:2vw;
-        overflow:auto;
-        font-size:3.5vw;
-        transition:0.52s;
-        }
-        #username{
-        border:none;
-        display:flex;
-        outline:none;
-        border-radius:15px;
-        background:linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
-        backdrop-filter:blur(10px);
-        transition:0.52s;
-        color:white;
-        font-family:arial;
-        align-items:center;
-        text-align:center;
-        justify-content: center;
-        width:40vw;
-        height:40vw;
-        }
-        #username button{
-        border:none;
-        outline:none;
-        border-radius:10px;
-        background-color:white;
-        backdrop-filter:blur(1px);
-        transition:0.52s;
-        color:black;
-        height:6vw;
-        width:17vw;
-        //font-family:arial;
-        margin-top:1vw;
-        }
-        #username input{
-        border:none;
-        outline:none;
-        border-radius:18px;
-        background-color:white;
-        backdrop-filter:blur(1px);
-        transition:0.52s;
-        color:black;
-        height:5.5vw;
-        width:35vw;
-        //font-family:arial;
-        margin-top:1vw;
-        }
-      }
-      @media (max-width: 990px) {
-      #username button{
-        border:none;
-        outline:none;
-        border-radius:10px;
-        background-color:white;
-        backdrop-filter:blur(1px);
-        transition:0.52s;
-        color:black;
-        height:6vw;
-        width:17vw;
-        //font-family:arial;
-        margin-top:1vw;
-        }
-  input[type="text"] {
-    font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  }
-}
-      #username button{
-        border:none;
-        outline:none;
-        border-radius:10px;
-        background-color:white;
-        backdrop-filter:blur(1px);
-        transition:0.52s;
-        color:black;
-        height:4vw;
-        width:10vw;
-        //font-family:arial;
-        margin-top:1vw;
-        }
-        #clearBtn{
-        width:9vw;
-        min-width:100px;
-        max-height:20px;
-        min-height:15px;
-        height:4vw;
-        background-color:red;
-        /*border-color:#f4b4a4;
-        outline-color:#f4b4a4;*/
-        border-radius:5px;
-        border:1px;
-        outline:none;
-        position:absolute;
-        top:0.5vw;
-        left:1vw;
-        color:white;
-        transition:0.52s;
-        }
-        #username{
-        border:none;
-        outline:none;
-        border-radius:15px;
-        background:linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0));
-        backdrop-filter:blur(10px);
-        transition:0.52s;
-        color:white;
-        font-family:arial;
-        align-items:center;
-        text-align:center;
-        justify-content: center;
-        }
-        #username input{
-        border-radius:25px;
-        }
-        #username button{
-        border:none;
-        outline:none;
-        border-radius:15px;
-        background-color:white;
-        backdrop-filter:blur(1px);
-        transition:0.52s;
-        color:black;
-        //font-family:arial;
-        margin-top:1vw;
-        }
-        input[type="text"]:focus{
-        outline:0.1px;
-        border:0.1px;
-        }
-        input[type="text"]{
-        padding-left:10px;
-        outline:0.1px;
-        border:0.1px;
-        }
-        @media (max-width: 530px) {
-      .jouwbericht{
-        background-color:blue;
-        border-radius:5px;
-        max-width:35vw;
-        min-height:5.5vw;
-        max-height:17vw;
-        color:white;
-        margin-left:auto;
-        margin-right:2vw;
-        overflow:auto;
-        font-size:3.5vw;
-        transition:0.52s;
-        }
-      #stuurknop{
-        position:absolute;
-        top:87.1vh;
-        left:90.5vw;
-        width:8.5vw;
-        height:6.1vw;
-        border-radius:50px;
-        border:none;
-        background-color:#0088ff;
-        color:white;
-        transition:0.52s;
-      }
-      #username button{
-        border:none;
-        outline:none;
-        border-radius:10px;
-        background-color:white;
-        backdrop-filter:blur(1px);
-        transition:0.52s;
-        color:black;
-        height:5vw;
-        width:15vw;
-        //font-family:arial;
-        margin-top:1vw;
-        }
-        #cont{
-        padding-bottom: 4.5vw;
-        }
-      }
-    </style>
+<!DOCTYPE html>
+<html style="scroll-behavior: smooth">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <style>
+    body {
+      background-color: #0d1117;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .bericht {
+    margin-top:25px;
+      width: 34vw;
+      background-color: #151b23;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      /*align-items: center;*/
+      justify-content: space-between;
+      height: 60vh;
+      margin-left:1vw;
+    }
+
+    .gebruikersnaam {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+
+    h4 {
+      background-color: blue;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 0.9em;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #post{
+    width:5vw;
+    height:5vw;
+    border-radius:50%;
+    border:none;
+    outline:none;
+    background-color: #151b23;
+    color: white;
+    box-shadow: 2px 3px 12px rgba(0, 90, 204, 0.5);
+    position:absolute;
+    top:90vh;
+    left:90vw;
+    transition:0.4s;
+    }
+    #post:hover{
+    width:5.1vw;
+    height:5.1vw;
+    border-radius:50%;
+    border:none;
+    outline:none;
+    background-color: #151b23;
+    color: white;
+    box-shadow: 5px 6px 15px rgba(0, 90, 204, 0.5);
+    position:absolute;
+    top:90vh;
+    left:90vw;
+    transition:0.4s;
+    }
+    #sluit{
+    width:5vw;
+    height:5vw;
+    border-radius:50%;
+    border:none;
+    outline:none;
+    background-color: #151b23;
+    color: white;
+    box-shadow: 2px 3px 12px rgba(0, 90, 204, 0.5);
+    position:absolute;
+    top:2vh;
+    left:2vw;
+    transition:0.4s;
+    }
+    #sluit:hover{
+    width:5.1vw;
+    height:5.1vw;
+    border-radius:50%;
+    border:none;
+    outline:none;
+    background-color: #151b23;
+    color: white;
+    box-shadow: 5px 6px 15px rgba(0, 90, 204, 0.5);
+    position:absolute;
+    transition:0.4s;
+    }
+    #postbericht {
+    margin-top:25px;
+      width: 34vw;
+      background-color: #151b23;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      padding-top:10vw;
+      display: none;
+      flex-direction: column;
+      /*align-items: center;*/
+      justify-content: space-between;
+      height: 45vh;
+      z-index:999;
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+    }
+    input{
+    background-color:#2b3849;
+    color:white;
+    border:none;
+    outline:none;
+    border-radius:5px;
+    width:100%;
+    height:8%;
+    }
+    button{
+    background-color:#2b3849;
+    color:white;
+    border:none;
+    outline:none;
+    border-radius:5px;
+    width:100%;
+    height:8%;
+    }
+    select{
+    background-color:#2b3849;
+    color:white;
+    border:none;
+    outline:none;
+    border-radius:5px;
+    width:100%;
+    height:8%;
+    overflow-y: hidden;
+    }
+    option{
+    border:none;
+    outline:none;
+    }
+    ::-webkit-scrollbar {width: 0px; height: 0px}
+    ::-webkit-scrollbar-thumb {
+    background-color: black;
+    }
+    ::-webkit-scrollbar-track {
+    background-color: white;
+    }
+  </style>
 </head>
-<body onload="username.showModal();">
-  <button id="clearBtn" onclick="clearMessages()">Verwijder</button>
-    <div id="cont">
-    <!--<p class="jouwbericht" id="jouwbericht"></p>-->
-    </div>
-    <input id="typveld" type="text"></input>
-    <button id="stuurknop" onclick="vpost()">+</button>
-    <dialog id="username">
-    <div id="connectdiv">
-        <h1>username</h1>
-        <input id="anderecode"type="text"></input>
-        <br>
-        <button class="cofs" onclick="userna()">submit</button>
-        <button class="cofs" onclick="username.close()">close</button>
-    </div>
-    </dialog>
-    <script>
-     document.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    vpost();
+<body>
+<br>
+  <div class="bericht">
+    <p id="gebruikersnaam" class="gebruikersnaam"></p>
+    <img class="foto" id="foto">
+    <h3 class="titelzin"id="titelzin"></h3>
+    <h4 class="tag" id="tag"></h4>
+  </div>
+  <button onclick="stuur()" id="post">+</button>
+  <div id="postbericht">
+  <button onclick="nietstuur()" id="sluit">x</button>
+  <input id="usn"type="text" placeholder="username">
+  <input id="iurl"type="url" placeholder="image url">
+  <input id="ttl"type="text" placeholder="title">
+  <select id="tg">
+  <option value="Corvette">Corvette</option>
+  <option value="Bmw">BMW</option>
+  <option value="Mercedes">Mercedes-Benz</option>
+  <option value="Audi">Audi</option>
+  <option value="Porsche">Porsche</option>
+  <option value="Nissan">Nissan</option>
+  <option value="Toyota">Toyota</option>
+  <option value="Honda">Honda</option>
+  <option value="Ford">Ford</option>
+  <option value="Chevrolet">Chevrolet</option>
+  <option value="Ferrari">Ferrari</option>
+  <option value="Lamborghini">Lamborghini</option>
+  <option value="McLaren">McLaren</option>
+  <option value="Volkswagen">Volkswagen</option>
+  <option value="Mazda">Mazda</option>
+  <option value="Subaru">Subaru</option>
+  <option value="Jaguar">Jaguar</option>
+  <option value="Corvette">Corvette</option>
+  <option value="Bmw">Bmw</option>
+  <option value="JDM">JDM</option>
+  <option value="Drift">Drift</option>
+  <option value="Supercar">Supercar</option>
+  <option value="MuscleCar">Muscle Car</option>
+  <option value="TrackDay">Track Day</option>
+  <option value="GermanEngineering">German Engineering</option>
+  <option value="Tuned">Tuned</option>
+  <option value="OffRoad">Off-Road</option>
+  <option value="Stance">Stance</option>
+  <option value="Turbo">Turbo</option>
+</select>
+<button onclick="stuurbericht()">submit</button>
+  </div>
+  <script>
+  function stuur(){
+  document.getElementById("postbericht").style.display = "flex";
+  document.getElementById("bericht").style.display = "none";
   }
-  });
-      var usernam;
-      var responderen = 0;
-      function vpost(){
-      if(responderen === 1){
-      stuureactie();
-      responderen = 0;
-      } else {
-      post();
-      }
-      }
-      function userna(){
-      usernam = document.getElementById("anderecode").value;
-      username.close();
-      document.getElementById('username').style.display = "none";
-      }
-        var nummer = 0;
-        var stuurtekst= document.getElementById("typveld").value;
-        function post() {
-        // Haal de waarde van het input veld direct op na het klikken
-        var stuurtekst = document.getElementById("typveld").value;
-        if (stuurtekst.trim() === "") return; // Zorg dat lege berichten niet worden verstuurd
-        
-        nummer++;
-        var newDiv = document.createElement("p");
-        newDiv.classList.add("jouwbericht");
-        newDiv.id = "jouwtekst" + nummer;
-        var h = document.getElementById("cont");
-        h.appendChild(newDiv);
+  function nietstuur(){
+  document.getElementById("postbericht").style.display = "none";
+  document.getElementById("bericht").style.display = "flex";
+  }
+  </script>
+  <script>
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
 
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    fetch("https://flossy-five-bayberry.glitch.me/t/001", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        document.getElementById("titelzin").innerHTML = result.tekst;
+        document.getElementById("foto").src = result.url;
+        document.getElementById("gebruikersnaam").innerHTML = result.username;
+        document.getElementById("tag").innerHTML = result.tag;
+      })
+      .catch((error) => console.error(error));
+  </script>
+  <script>
+  function stuurbericht(){
+  var username = document.getElementById("usn").value;
+  var imageurl = document.getElementById("iurl").value;
+  var titel = document.getElementById("ttl").value;
+  var tag = document.getElementById("tg").value;
+  const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
 
-        const raw = JSON.stringify({
-          tekst: `${stuurtekst}`,
-          username: `${usernam}`,
-          reageren: `0`,
-          welkreageernr: `0`
-        });
+const raw = JSON.stringify({
+  "tekst": titel,
+  "username": username,
+  "url": imageurl,
+  "tag": tag
+});
 
-        const requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: raw,
-          redirect: "follow",
-        };
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
 
-        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${nummer}`, requestOptions)
-          .then((response) => response.json())
-          .then((result) => {
-            document.getElementById("jouwtekst" + nummer).innerHTML = result.tekst;
-          })
-          .catch((error) => console.error(error));
-
-        // Leeg het tekstveld na versturen
-        document.getElementById("typveld").value = "";
-        var h = document.getElementById("cont");
-  h.scrollTop = h.scrollHeight;
-      }
-
-var numr = nummer + 1;
-var nummercheck;
-var reactieusername;
-var tekstalsreactie;
-var hetgewoonnummer;
-function check() {
-        // Gebruik een aparte variabele om inkomende berichten te tracken
-        var numr = nummer + 1;
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
-
-        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${numr}`, requestOptions)
-          .then((response) => {
-            if (!response.ok) {
-              return;
-            }
-            return response.json();
-          })
-          .then((result) => {
-            if (result) {
-             if (result.reageren === '1'){
-            tekstalsreactie = result.tekst;
-            reactieusername = result.username;
-            hetgewoonnummer = numr;
-            nummercheck = result.welkreageernr;
-             reactiegevonden();
-             nummer = numr;
-             } else {
-              var newDiv = document.createElement("p");
-              newDiv.classList.add("anderbericht");
-              newDiv.id = "atekst" + numr;
-              var h = document.getElementById("cont");
-              h.appendChild(newDiv);
-              document.getElementById("atekst" + numr).innerHTML = `${result.username}: ${result.tekst}    <svg onclick="responding(${numr})" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>`;
-              var h = document.getElementById("cont");
-  h.scrollTop = h.scrollHeight;
-              nummer = numr;
-              } // Update nummer voor volgende check
-            }
-          })
-          .catch((error) => console.error(error));
-      }
-
-setInterval(check, 1000);
-
-function clearMessages() {
-  const requestOptions = {
-    method: "DELETE",
-    redirect: "follow",
-  };
-
-  fetch("https://unruly-longing-amaranthus.glitch.me/clear", requestOptions)
-    .then(response => response.json())
-    .then(result => {
-      console.log(result.message);
-      // Wis alle berichten uit de interface
-      document.getElementById("cont").innerHTML = '';
-      nummer = 0;  // Reset het nummer naar 0
-    })
-    .catch(error => console.error('Error:', error));
-}
-var responderen = 0;
-var respnmr;
-var resptekst = "";
-function responding(welk){
-respnmr = welk;
-console.log(respnmr);
-responderen = 1;
-stuurreactie();
-}
-function stuurreactie(){
-console.log('start stuurreactie');
-var resspnmr = respnmr;
-console.log(resspnmr);
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
-
-        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${resspnmr}`, requestOptions)
-          .then((response) => {
-            if (!response.ok) {
-              return;
-            }
-            return response.json();
-          })
-          .then((result) => {
-            if (result) {
-              resptekst = `${result.tekst}`;
-              console.log(resptekst);
-            }
-          })
-          //responderen = 0;
-          //.catch((error) => console.error(error));
-//stuureactie();
-}
-function stuureactie(){
-console.log('start stuureactie');
-responderen = 0;
-console.log(respnmr);
-console.log(resptekst);
-// Haal de waarde van het input veld direct op na het klikken
-        var stuurtekst = document.getElementById("typveld").value;
-        if (stuurtekst.trim() === "") return; // Zorg dat lege berichten niet worden verstuurd
-        
-        nummer++;
-        var newDiv = document.createElement("p");
-        newDiv.classList.add("jouwbericht");
-        newDiv.id = "jouwtekst" + nummer;
-        var h = document.getElementById("cont");
-        h.appendChild(newDiv);
-
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        const raw = JSON.stringify({
-          tekst: `${stuurtekst}`,
-          username: `${usernam}`,
-          reageren: `1`,
-          welkreageernr: `${respnmr}`
-        });
-
-        const requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: raw,
-          redirect: "follow",
-        };
-
-        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${nummer}`, requestOptions)
-          .then((response) => response.json())
-          .then((result) => {
-            document.getElementById("jouwtekst" + nummer).innerHTML = `<p class="tekstbovenreactie">${resptekst}</p> ${result.tekst}`;
-          })
-          .catch((error) => console.error(error));
-
-        // Leeg het tekstveld na versturen
-        document.getElementById("typveld").value = "";
-        var h = document.getElementById("cont");
-  h.scrollTop = h.scrollHeight;
-  responderen = 0;
-}
-var oguser;
-function reactiegevonden(){
-console.log("reactiegevonden is gestart");
-var resspnmr = nummercheck;
-console.log(resspnmr);
-        const requestOptions = {
-          method: "GET",
-          redirect: "follow",
-        };
-
-        fetch(`https://unruly-longing-amaranthus.glitch.me/t/${resspnmr}`, requestOptions)
-          .then((response) => {
-            if (!response.ok) {
-              return;
-            }
-            return response.json();
-          })
-          .then((result) => {
-            if (result) {
-              resptekst = `${result.tekst}`;
-              oguser = `${result.username}`;
-              console.log(resptekst);
-            }
-          })
-         var newDiv = document.createElement("p");
-        newDiv.classList.add("anderbericht");
-        newDiv.id = "atekst" + hetgewoonnummer;
-        var h = document.getElementById("cont");
-        h.appendChild(newDiv);
-        document.getElementById("atekst" + hetgewoonnummer).innerHTML = `<p class="tekstbovenreactie">${oguser}: ${resptekst}</p> ${reactieusername}: ${tekstalsreactie}`;
-             var h = document.getElementById("cont");
-  h.scrollTop = h.scrollHeight;
-  nummer = numr;
-}
-    </script>
+fetch("https://flossy-five-bayberry.glitch.me/t/002", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  
+  var newDiv = document.createElement("div");
+  newDiv.classList.add("bericht");
+  newDiv.innerHTML = `
+    <p class="gebruikersnaam">${username}</p>
+    <img class="foto" src="${imageurl}">
+    <h3 class="titelzin">${titel}</h3>
+    <h4 class="tag">${tag}</h4>
+  `;
+  var container = document.body;  // Je kunt hier ook een andere container targeten
+  container.appendChild(newDiv);
+  }
+  </script>
 </body>
+</html>
